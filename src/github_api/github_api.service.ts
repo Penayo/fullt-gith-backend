@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { configService } from '../config/config.service'
 import { Octokit } from 'octokit'
+import { Branch } from './branch/branch.interface'
 
 @Injectable()
 export class GithubApiService {
@@ -8,13 +9,12 @@ export class GithubApiService {
     auth: configService.getGithubAuthToken()
   })
 
-  async listRepositoryBranches(): Promise<Array<string>> {
+  async listRepositoryBranches(repository: string): Promise<Branch[]> {
     const { data } = await this.octokitClient.rest.repos.listBranches({
       owner: configService.getRepositoryOwner(),
-      repo: 'fullt-gith-backend'
+      repo: repository
     })
 
-    console.log('Data', data)
-    return ['main', 'master', 'develop']
+    return data.map(branch => ({ name: branch.name }))
   }
 }
