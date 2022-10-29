@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { configService } from '../config/config.service'
 import { Octokit } from 'octokit'
-import { Branch } from './branch/branch.interface'
-import { Commit } from './commit/commit.interface'
+import { Branch } from './branch/branch'
+import { Commit } from './commit/commit'
 
 @Injectable()
 export class GithubApiService {
