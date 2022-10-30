@@ -1,48 +1,54 @@
-import React from 'react';
-import { Sidebar } from 'flowbite-react';
+import React from 'react' ;
+import { Sidebar } from 'flowbite-react' ;
+import { HiChartPie, HiShoppingBag, HiInbox } from 'react-icons/hi' ;
+import { useNavigate } from 'react-router-dom';
 
 export function AppSidebar () {
+  const navigate = useNavigate()
+
+  function openUrl (url: string) {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
   return (
-    <Sidebar aria-label="Default sidebar">
+    <Sidebar aria-label="Sidebar with multi-level dropdown">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
           <Sidebar.Item
             href="#"
+            icon={HiChartPie}
           >
             Dashboard
           </Sidebar.Item>
+          <Sidebar.Collapse
+            icon={HiShoppingBag}
+            label="Branches"
+          >
+            <Sidebar.Item href="#">
+              master
+            </Sidebar.Item>
+            <Sidebar.Item href="#">
+              develop
+            </Sidebar.Item>
+          </Sidebar.Collapse>
           <Sidebar.Item
             href="#"
-            label="Pro"
-            labelColor="alternative"
+            icon={HiInbox}
           >
-            Kanban
+            Issues
           </Sidebar.Item>
           <Sidebar.Item
             href="#"
-            label="3"
+            icon={HiInbox}
+            onClick={() => openUrl('http://localhost:8000/swagger')}
           >
-            Inbox
+            Swagger API Doc
           </Sidebar.Item>
           <Sidebar.Item
             href="#"
+            icon={HiInbox}
           >
-            Users
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-          >
-            Products
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-          >
-            Sign In
-          </Sidebar.Item>
-          <Sidebar.Item
-            href="#"
-          >
-            Sign Up
+            Development Doc.
           </Sidebar.Item>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
