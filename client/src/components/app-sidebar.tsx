@@ -10,6 +10,10 @@ export function AppSidebar () {
     window.open(url, '_blank', 'noopener,noreferrer');
   }
 
+  function goTo (path: string) {
+    navigate(path)
+  }
+
   return (
     <Sidebar aria-label="Sidebar with multi-level dropdown">
       <Sidebar.Items>
@@ -24,10 +28,10 @@ export function AppSidebar () {
             icon={HiShoppingBag}
             label="Branches"
           >
-            <Sidebar.Item href="#">
+            <Sidebar.Item href="#" onClick={() => goTo('commits/master')}>
               master
             </Sidebar.Item>
-            <Sidebar.Item href="#">
+            <Sidebar.Item href="#" onClick={() => goTo('commits/develop')}>
               develop
             </Sidebar.Item>
           </Sidebar.Collapse>

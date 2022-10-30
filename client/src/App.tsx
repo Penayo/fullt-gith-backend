@@ -7,6 +7,7 @@ import {
   Route
 } from 'react-router-dom';
 import Dashboard from './pages/dashboard'
+import Commits from './pages/commits'
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <main>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
+                <Route path="/commits/:branchName" element={<Commits />} />
               </Routes>
             </main>
           </div>
