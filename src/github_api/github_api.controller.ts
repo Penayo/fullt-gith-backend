@@ -7,6 +7,8 @@ import {
   ApiOperation,
   ApiResponse,
   ApiTags,
+  ApiQuery,
+  ApiParam
 } from '@nestjs/swagger';
 
 @Controller('github')
@@ -16,23 +18,26 @@ export class GithubApiController {
 
   @Get('branches')
   @ApiTags('branches')
+  @ApiQuery({ name: 'repository' })
   @ApiResponse({
     status: 200,
     description: 'Github repository branches',
     type: Branch
   })
-  getBranches(@Query('repository') repository): Promise<Branch[]> {
+  getBranches(@Query('repository') repository: string): Promise<Branch[]> {
     return this.githubApiService.listRepositoryBranches(repository)
   }
 
   @Get('branches/:branch')
   @ApiTags('branches')
+  @ApiParam({ name: 'branch' })
+  @ApiQuery({ name: 'repository' })
   @ApiResponse({
     status: 200,
     description: 'Github repository commit list',
     type: Commit,
   })
-  getBranchCommits(@Param() param, @Query() query): Promise<Commit[]> {
-    return this.githubApiService.listBranchCommits(query.repository, param.branch)
+  getBranchCommits(@Param() param, @Query('repository') repository: string): Promise<Commit[]> {
+    return this.githubApiService.listBranchCommits(repository, param.branch)
   }
 }
