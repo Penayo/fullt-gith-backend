@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api')
 
   const config = new DocumentBuilder()
     .setTitle('Github repository Commit List')
@@ -13,7 +14,7 @@ async function bootstrap() {
     .build()
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('doc', app, document);
+  SwaggerModule.setup('swagger', app, document);
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
