@@ -22,7 +22,6 @@ export class GithubApiController {
     type: Branch
   })
   getBranches(@Query('repository') repository): Promise<Branch[]> {
-    console.log('uuuuu', repository)
     return this.githubApiService.listRepositoryBranches(repository)
   }
 

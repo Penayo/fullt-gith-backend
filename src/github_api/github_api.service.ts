@@ -21,7 +21,13 @@ export class GithubApiService {
       repo: repository
     })
 
-    return data.map(branch => ({ name: branch.name }))
+    const branches = data.map(d => {
+      const branch = new Branch()
+      branch.name = d.name
+      return branch
+    })
+
+    return branches
   }
 
   /**
@@ -37,15 +43,15 @@ export class GithubApiService {
       sha: branch
     })
 
-    const commits = data.map(commit => {
-      const _commit = {
-        id: commit.sha,
-        author: commit.commit.author.name,
-        author_id: commit.author.id,
-        message: commit.commit.message,
-        date: commit.commit.author.date
-      }
-      return _commit
+    const commits = data.map(d => {
+      const commit = new Commit()
+      commit.id = d.sha
+      commit.author = d.commit.author.name
+      commit.author_id = d.author.id
+      commit.message = d.commit.message
+      commit.date = d.commit.author.date
+
+      return commit
     })
 
     return commits

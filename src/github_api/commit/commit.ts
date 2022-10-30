@@ -7,6 +7,9 @@ export class Commit {
   @ApiProperty({ description: 'The author of the commit' })
   author: string
 
+  @ApiProperty({ description: 'The author id of commit' })
+  author_id: number
+
   @ApiProperty()
   message: string
 
