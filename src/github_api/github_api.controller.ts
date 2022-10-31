@@ -32,12 +32,14 @@ export class GithubApiController {
   @ApiTags('branches')
   @ApiParam({ name: 'branch' })
   @ApiQuery({ name: 'repository' })
+  @ApiQuery({ name: 'page' })
+  @ApiQuery({ name: 'per_page' })
   @ApiResponse({
     status: 200,
     description: 'Github repository commit list',
     type: Commit,
   })
-  getBranchCommits(@Param() param, @Query('repository') repository: string): Promise<Commit[]> {
-    return this.githubApiService.listBranchCommits(repository, param.branch)
+  getBranchCommits(@Param() param, @Query() query: { repository: string, page: number, per_page: number}): Promise<Commit[]> {
+    return this.githubApiService.listBranchCommits(query.repository, param.branch, query.page, query.per_page)
   }
 }

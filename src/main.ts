@@ -2,9 +2,24 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { AppModule } from './app.module';
 
+const whitelist = ['http://localhost:3000'];
+
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  console.log('WHITE LIST', whitelist)
+
+  const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api')
+  app.enableCors({
+    origin: function (origin, callback) {
+      if (!origin || whitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Accept",
+  })
 
   const config = new DocumentBuilder()
     .setTitle('Github repository Commit List')

@@ -36,11 +36,13 @@ export class GithubApiService {
    * @params {string} banch The branch to get the commits fromDer
    * @return
    */
-  async listBranchCommits (repository: string, branch: string): Promise<Commit[]> {
+  async listBranchCommits (repository: string, branch: string, page: number, per_page: number): Promise<Commit[]> {
     const { data } = await this.octokitClient.rest.repos.listCommits({
       owner: configService.getRepositoryOwner(),
       repo: repository,
-      sha: branch
+      sha: branch,
+      page,
+      per_page
     })
 
     const commits = data.map(d => {
