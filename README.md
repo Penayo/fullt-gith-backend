@@ -4,19 +4,20 @@
 
 ## Description
 
-This is code challenge project that connect width github API using [Octokit](https://github.com/octokit/octokit.js)
+This is a code challenge project that connect width github API using [Octokit](https://github.com/octokit/octokit.js)
 
 ## Installation
 First, create an .env file in the project root
 and add next environment variables on it
 
+```bash
 PORT=8000
 MODE=DEV
 REPO_OWNER=Penayo
 GITHUB_PERSONAL_TOKEN=...
+```
 
-Second, make sure you have node version 16 or 16+
-
+Second, make sure you have node version 16 or 16+, then run
 ```bash
 $ npm install
 ```
@@ -33,11 +34,8 @@ and the server will be online
 ## Running manually
 
 ```bash
-# development
 $ npm run start
 
-# watch mode
-$ npm run start:dev
 ```
 
 # Run the client project
