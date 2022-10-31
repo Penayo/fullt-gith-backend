@@ -48,7 +48,7 @@ export class GithubApiService {
     const commits = data.map(d => {
       const commit = new Commit()
       commit.id = d.sha
-      commit.author = d.commit.author.name
+      commit.author = d.author.login
       commit.author_id = d.author.id
       commit.message = d.commit.message
       commit.date = d.commit.author.date
