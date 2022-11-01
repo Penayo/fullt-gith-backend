@@ -1,9 +1,18 @@
 FROM node:16
 
 WORKDIR /app
-COPY package*.json .
 
-RUN npm install
-COPY . .
+COPY --chown=node:node package*.json ./
 
-CMD npm run start:dev
+RUN npm ci
+
+COPY --chown=node:node . .
+
+ENV NODE_ENV production
+
+RUN npm run build
+
+USER node
+
+CMD npm run start:prod
+
