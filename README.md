@@ -10,7 +10,6 @@ More technical details are in the welcome page of the running project, so let's 
 Deploy the project with docker
 
 if you don't have docker installed, please see the [docker instalation page](https://www.docker.com/get-started/)
-Select the Operating system you have and continue with the guide
 
 First start the backend
 
@@ -24,4 +23,5 @@ and then start the frontend, open a new terminal
 docker run -p 3000:3000 penayo/fullt-gith-client:latest
 ```
 
+To make sure all would be OK with the installation, please don't change the port numbers.
 last, open the browser at [http://localhost:3000](http://localhost:3000)
