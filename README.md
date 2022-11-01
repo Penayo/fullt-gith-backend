@@ -24,4 +24,5 @@ docker run -p 3000:3000 penayo/fullt-gith-client:latest
 ```
 
 To make sure all would be OK with the installation, please don't change the port numbers.
-last, open the browser at [http://localhost:3000](http://localhost:3000)
+
+Last, open the browser at [http://localhost:3000](http://localhost:3000)
